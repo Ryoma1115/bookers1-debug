@@ -139,7 +139,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     public_suffix (4.0.5)
-    puma (3.12.2)
+    puma (3.12.6)
     rack (2.0.7)
     rack-protection (2.0.8.1)
       rack
@@ -271,7 +271,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  puma (~> 3.0)
+  puma (~> 3.12)
   rails (~> 5.2.3)
   refile!
   refile-mini_magick
