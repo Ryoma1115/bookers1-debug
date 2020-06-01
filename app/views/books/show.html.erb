@@ -1,14 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+<!-- プロフィール画面 -->
+<%= render 'layouts/sidebar',user: @user,book: @book %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<h1>Book detail</h1>
+  <div class="col-xs-9">
+    <table class="table">
+        <tbody>
+          <tr>
+            <td>
+                <%= link_to user_path(@user) do %>
+                <%= attachment_image_tag @user,:profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg",size: "100x100" %>
+                <%= @user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(@book_detail) do %> 
+              <%= @book_detail.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= @book_detail.body %>
+            </td>
 
-<p>
-  <strong>Body:</strong>
-  <%= @book.body %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book), class: "edit_#{@book.id}" %> |
-<%= link_to 'Back', books_path, class: "back" %>
+            <% if @user == current_user %>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book_detail),class: "btn btn-success btn-sm" %>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@book_detail),method: :delete,class: "btn btn-danger btn-sm" %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

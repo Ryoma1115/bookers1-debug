@@ -1,2 +1,32 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="row">
+    <%= render 'layouts/sidebar', user: @user, book: @book %>
+    <h1>Users</h1>
+    <div class="col-xs-9">
+     <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <!-- テーブルのbody部分 -->
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag user, :profile_image, :fill, 50,50 , format: 'jpeg',class: "pull-left profile-img",fallback:"no_image.jpg" %>
+            </td>
+            <td>
+              <%= user.name %>
+            </td>
+            <td>
+              <%= link_to "Show", user_path(user) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+     </div>
+    </div>
+</div>

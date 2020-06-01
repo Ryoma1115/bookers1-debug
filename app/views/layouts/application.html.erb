@@ -3,12 +3,63 @@
   <head>
     <title>WebCampBackendNew</title>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <nav class="nav navbar-nav navbar-left">
+          <span>Bookers</span>
+        </nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to(content_tag(:span, " Home", class: "glyphicon glyphicon-home"), user_path(current_user.id) ) %>
+              </li>
+              <li>
+                <%= link_to(content_tag(:span, " Users", class: "glyphicon glyphicon-user"), users_path) %>
+              </li>
+              <li>
+                <%= link_to(content_tag(:span, " Books", class: "glyphicon glyphicon-book"),  books_path) %>
+              </li>
+              <li>
+                <%= link_to(content_tag(:span, " logout", class: "glyphicon glyphicon-log-out"),  destroy_user_session_path, method: :delete) %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to(content_tag(:span, " Home", class: "glyphicon glyphicon-home"),  "/") %>
+              </li>
+              <li>
+                <%= link_to(content_tag(:span, " About", class: "glyphicon glyphicon-link"),  "/home/about") %>
+              </li>
+              <li>
+                <%= link_to(content_tag(:span, " sign up", class: "glyphicon glyphicon-edit"),  new_user_registration_path) %>
+              </li>
+              <li>
+                <%= link_to(content_tag(:span, " login", class: "glyphicon glyphicon-log-in"),  new_user_session_path) %>
+              </li>
+            <% end %>
+          </ul>
+      </div>
+    </header>
+
+    <div class="body container">
+      <%= yield %>
+    </div>
+    <footer>
+      <div class="container">
+        <footer>
+          <div class="row">
+            <div class="col-xs-3 col-xs-offset-9">
+              CopyRight Infratop.inc
+            </div>
+          </div>
+        </footer>
+      </div>
+    </footer>
   </body>
 </html>
