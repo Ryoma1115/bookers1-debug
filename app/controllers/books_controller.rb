@@ -19,6 +19,9 @@ class BooksController < ApplicationController
       # 子から親を参照している
     @user = @book_detail.user
     @book = Book.new
+        # コメント部分
+    @book_comments = @book_detail.book_comments.all
+    @book_comment = BookComment.new
   end
 
   # GET /books/1/edit
