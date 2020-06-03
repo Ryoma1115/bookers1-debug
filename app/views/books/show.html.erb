@@ -38,6 +38,7 @@
             <td>
               <%= @book_detail.favorites.count %>いいね
             </td>
+            <td>コメント数<%= @book.book_comments.count %></td>
 
             <% if @user == current_user %>
               <td>
